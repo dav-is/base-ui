@@ -4,9 +4,9 @@ import * as React from 'react';
 import { Tabs } from '@base-ui-components/react/tabs';
 
 interface DemoFileSelectorProps {
-  files: Array<{ name: string; slug?: string; component: React.ReactNode }>;
+  files: Array<{ name: string; slug?: string; component?: React.ReactNode }>;
   selectedFileName: string | undefined;
-  selectFileName: (fileName: string) => void;
+  selectFileName?: (fileName: string) => void;
   onTabChange?: () => void;
 }
 
@@ -25,7 +25,7 @@ export function DemoFileSelector({
 
   const onValueChange = React.useCallback(
     (value: string) => {
-      selectFileName(value);
+      selectFileName?.(value);
       onTabChange?.();
     },
     [selectFileName, onTabChange],

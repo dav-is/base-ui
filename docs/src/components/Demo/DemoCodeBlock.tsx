@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import { Collapsible } from '@base-ui-components/react/collapsible';
 import * as ScrollArea from '../ScrollArea';

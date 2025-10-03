@@ -4,6 +4,7 @@ import {
 } from '@mui/internal-docs-infra/abstractCreateDemo';
 
 import { Demo as DemoContent } from '../components/Demo/Demo';
+import { DemoLoading as DemoContentLoading } from '../components/Demo/DemoLoading';
 import { DemoDataTheme } from '../demo-data/theme';
 
 const demoGlobalData = [DemoDataTheme];
@@ -16,6 +17,7 @@ const demoGlobalData = [DemoDataTheme];
  */
 export const createDemo = createDemoFactory({
   DemoContent,
+  DemoContentLoading,
   demoGlobalData,
 });
 
@@ -28,5 +30,6 @@ export const createDemo = createDemoFactory({
  */
 export const createDemoWithVariants = createDemoWithVariantsFactory({
   DemoContent,
+  DemoContentLoading,
   demoGlobalData,
 });
