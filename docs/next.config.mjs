@@ -58,6 +58,10 @@ const nextConfig = {
         as: '*.ts',
         loaders: ['@mui/internal-docs-infra/pipeline/loadPrecomputedCodeHighlighter'],
       },
+      './app/**/types.ts': {
+        as: '*.ts',
+        loaders: ['@mui/internal-docs-infra/pipeline/loadPrecomputedTypesMeta'],
+      },
     },
   },
   webpack: (config, { defaultLoaders }) => {
@@ -74,6 +78,16 @@ const nextConfig = {
       use: [
         defaultLoaders.babel,
         '@mui/internal-docs-infra/pipeline/loadPrecomputedCodeHighlighter',
+      ],
+    });
+    config.module.rules.push({
+      test: /\/types\.ts$/,
+      use: [
+        defaultLoaders.babel,
+        {
+          loader: '@mui/internal-docs-infra/pipeline/loadPrecomputedTypesMeta',
+          options: { performance: { logging: true } },
+        },
       ],
     });
 

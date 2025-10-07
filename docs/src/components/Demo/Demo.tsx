@@ -42,7 +42,7 @@ export function Demo({ defaultOpen = false, compact = false, className, ...demoP
 
   return (
     <div className={clsx('DemoRoot', className)}>
-      {demo.allFilesSlugs.map(({ slug }) => (
+      {demo.files.map(({ slug }) => (
         <span key={slug} id={slug} className="scroll-mt-4" />
       ))}
       <DemoPlayground component={demo.component} variant={demo.selectedVariant} />
