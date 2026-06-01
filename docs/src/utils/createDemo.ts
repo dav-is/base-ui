@@ -15,6 +15,8 @@ import { Demo as DemoContent } from '../components/Demo/Demo';
  */
 export const createDemo = createDemoFactory({
   DemoContent,
+  projectDir: process.env.SOURCE_CODE_ROOT_DIR,
+  projectUrl: process.env.SOURCE_CODE_ROOT_URL,
 });
 
 /**
@@ -26,4 +28,6 @@ export const createDemo = createDemoFactory({
  */
 export const createDemoWithVariants = createDemoWithVariantsFactory({
   DemoContent,
+  projectDir: process.env.SOURCE_CODE_ROOT_DIR,
+  projectUrl: process.env.SOURCE_CODE_ROOT_URL,
 });

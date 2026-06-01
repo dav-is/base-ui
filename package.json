@@ -2,6 +2,10 @@
   "name": "@base-ui/monorepo",
   "version": "1.5.0",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mui/base-ui.git"
+  },
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "deduplicate": "pnpm dedupe",

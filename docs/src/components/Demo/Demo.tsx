@@ -15,7 +15,6 @@ import { ExternalLinkIcon } from 'docs/src/icons/ExternalLinkIcon';
 import { GitHubIcon } from 'docs/src/icons/GitHubIcon';
 import { MoreVertIcon } from 'docs/src/icons/MoreVertIcon';
 import { exportCodeSandbox, exportOpts } from 'docs/src/utils/demoExportOptions';
-import { getGitHubDemoUrl } from 'docs/src/utils/getGitHubDemoUrl';
 import { isSafari, isEdge } from '@base-ui/utils/detectBrowser';
 import { useStableCallback } from '@base-ui/utils/useStableCallback';
 import { useTimeout } from '@base-ui/utils/useTimeout';
@@ -91,7 +90,10 @@ export function Demo({
     exportCodeSandbox,
   });
 
-  const githubUrl = getGitHubDemoUrl(demoProps.url, demo.selectedVariant);
+  // Source URL for the currently-selected file, derived by docs-infra from the
+  // variant URL (rewritten from a local `file://` path to a hosted GitHub URL
+  // via the `projectDir`/`projectUrl` options passed to the demo factories).
+  const githubUrl = demo.selectedFileUrl;
 
   const onViewSource = useStableCallback(() => {
     ga?.trackEvent({
