@@ -82,6 +82,10 @@ const typesGenerationOptions = {
   ],
 };
 
+const demoOptions = {
+  emphasisOptions: { focusFramesMaxSize: 5 },
+};
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   trailingSlash: false,
@@ -103,11 +107,21 @@ const nextConfig = {
       },
       './src/app/**/demos/*/index.ts': {
         as: '*.ts',
-        loaders: ['@mui/internal-docs-infra/pipeline/loadPrecomputedCodeHighlighter'],
+        loaders: [
+          {
+            loader: '@mui/internal-docs-infra/pipeline/loadPrecomputedCodeHighlighter',
+            options: demoOptions,
+          },
+        ],
       },
       './src/demo-data/*/index.ts': {
         as: '*.ts',
-        loaders: ['@mui/internal-docs-infra/pipeline/loadPrecomputedCodeHighlighter'],
+        loaders: [
+          {
+            loader: '@mui/internal-docs-infra/pipeline/loadPrecomputedCodeHighlighter',
+            options: demoOptions,
+          },
+        ],
       },
     },
   },
@@ -131,14 +145,20 @@ const nextConfig = {
       test: /[/\\\\]demos[/\\\\][^/\\\\]+[/\\\\]index\.ts$/,
       use: [
         defaultLoaders.babel,
-        '@mui/internal-docs-infra/pipeline/loadPrecomputedCodeHighlighter',
+        {
+          loader: '@mui/internal-docs-infra/pipeline/loadPrecomputedCodeHighlighter',
+          options: demoOptions,
+        },
       ],
     });
     config.module.rules.push({
       test: /[/\\\\]src[/\\\\]demo-data[/\\\\][^/\\\\]+[/\\\\]index\.ts$/,
       use: [
         defaultLoaders.babel,
-        '@mui/internal-docs-infra/pipeline/loadPrecomputedCodeHighlighter',
+        {
+          loader: '@mui/internal-docs-infra/pipeline/loadPrecomputedCodeHighlighter',
+          options: demoOptions,
+        },
       ],
     });
 

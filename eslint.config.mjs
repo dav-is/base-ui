@@ -9,6 +9,7 @@ import {
 import { defineConfig, globalIgnores } from 'eslint/config';
 import * as path from 'node:path';
 import { fileURLToPath } from 'url';
+import { lintJavascriptDemoFocus } from '@mui/internal-docs-infra/pipeline/lintJavascriptDemoFocus';
 import remarkConfig from './.remarkrc.mjs';
 
 const filename = fileURLToPath(import.meta.url);
@@ -153,6 +154,19 @@ export default defineConfig(
           patterns: NO_RESTRICTED_IMPORTS_PATTERNS_DEEPLY_NESTED,
         },
       ],
+    },
+  },
+  {
+    files: ['docs/src/app/**/demos/**/*.tsx', 'docs/src/app/**/demos/**/*.jsx'],
+    // page.tsx/page.jsx are Next.js route wrappers, not demo previews, so they
+    // are exempt from the demo-focus rule at any demo depth (including the
+    // nested "demo of demo" structure, demos/<slug>/demo-*/page.tsx).
+    ignores: ['docs/src/app/**/demos/*/page.tsx', 'docs/src/app/**/demos/*/page.jsx'],
+    plugins: {
+      'docs-infra': { rules: { 'require-demo-focus': lintJavascriptDemoFocus } },
+    },
+    rules: {
+      'docs-infra/require-demo-focus': ['error', { wrapReturn: true }],
     },
   },
   {
